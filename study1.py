@@ -21,8 +21,8 @@ def parse_file(datafile):
         for line in range(1,11):
             sub_data = {}
             words = get_line[line].strip().split(',')
-            for words_number in range(0,len(words)):
-                sub_data[head[words_number]] = words[words_number]
+            for i, value in enumerate(words):
+                sub_data[head[i]] = value
             data.append(sub_data)
     return data
 
