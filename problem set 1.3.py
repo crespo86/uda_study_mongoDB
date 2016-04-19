@@ -38,8 +38,15 @@ def article_overview(kind, period):
     data = get_from_file(kind, period)
     titles = []
     urls =[]
-    # YOUR CODE HERE
-
+    for article in data:
+        section = article["section"]
+        title = article["title"]
+        titles.append({section:title})
+        if 'media' in article:
+            for words in article['media']:
+                for word in words['media-metadata']:
+                    if word["format"] == "Standard Thumbnail":
+                        urls.append(word['url'])
     return (titles, urls)
 
 
