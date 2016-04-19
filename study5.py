@@ -22,11 +22,13 @@ def get_authors(root):
                 "snm": None,
                 "email": None
         }
-
-        # YOUR CODE HERE
-
+#       data["fnm"] = author.find('./fnm').text
+#       data["snm"] = author.find('./snm').text
+#       data["email"] = author.find('./email').text
+        for p in author:
+            if p.tag == "fnm" or p.tag == "snm" or p.tag == "email":
+                data[p.tag] = p.text
         authors.append(data)
-
     return authors
 
 
