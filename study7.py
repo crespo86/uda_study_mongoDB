@@ -16,14 +16,19 @@ def extract_data(page):
     data = {"eventvalidation": "",
             "viewstate": ""}
     with open(page, "r") as html:
-        soup = BeautifulSoup(open(page), "lxml")
-        for n in soup.find_all('input'):
-            if n["type"] == "hidden":
-                if n["name"] == "__EVENTVALIDATION":
-                    data["eventvalidation"] = n['value']
-                elif n["name"] == "__VIEWSTATE":
-                    data["viewstate"] = n['value']
-        print data
+        soup = BeautifulSoup(html, "lxml")
+        ev = soup.find(id='__EVENTVALIDATION')
+        data['eventvalidation'] = ev['value']
+        vi = soup.find(id='__VIEWSTATE')
+        data['viewstate'] = vi['value']
+
+#        for n in soup.find_all('input'):
+#            if n["type"] == "hidden":
+#                if n["name"] == "__EVENTVALIDATION":
+#                    data["eventvalidation"] = n['value']
+#                elif n["name"] == "__VIEWSTATE":
+#                    data["viewstate"] = n['value']
+
     return data
 
 
